@@ -39,4 +39,8 @@ public class Clase_01_RegistrarEventos {
         System.out.println("------------------------------------------");
     }
     
+    public static List<Clase_Evento> getListaEventos() {
+        return listaEventos;
+    } 
+    
 }

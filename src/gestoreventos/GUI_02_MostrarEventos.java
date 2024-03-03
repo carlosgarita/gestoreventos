@@ -4,6 +4,11 @@
  */
 package gestoreventos;
 
+
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import java.util.Iterator;
+
 /**
  *
  * @author HP
@@ -13,8 +18,12 @@ public class GUI_02_MostrarEventos extends javax.swing.JFrame {
     /**
      * Creates new form GUI_MostrarEventos
      */
+    private DefaultTableModel tableModel; // Declarar tableModel como variable de instancia
+    
     public GUI_02_MostrarEventos() {
         initComponents();
+        tableModel = (DefaultTableModel) table_Eventos.getModel();
+        mostrarEventosEnTabla();
     }
 
     /**
@@ -28,6 +37,8 @@ public class GUI_02_MostrarEventos extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         btn_Salir = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table_Eventos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -40,25 +51,60 @@ public class GUI_02_MostrarEventos extends javax.swing.JFrame {
             }
         });
 
+        table_Eventos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Año", "Mes", "Dia", "Hora", "Deporte", "Pais", "Equipo A", "Equipo B"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true, true, true, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(table_Eventos);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(jLabel1)
-                .addContainerGap(460, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_Salir)
                 .addGap(34, 34, 34))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addGap(16, 16, 16)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addComponent(btn_Salir)
                 .addGap(42, 42, 42))
         );
@@ -66,6 +112,36 @@ public class GUI_02_MostrarEventos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void mostrarEventosEnTabla() {
+    // Obtener la lista de eventos
+    List<Clase_Evento> listaEventos = Clase_01_RegistrarEventos.getListaEventos();
+
+    // Limpiar la tabla antes de agregar nuevos datos
+    tableModel.setRowCount(0); // Aquí se limpian los datos existentes en la tabla
+
+    // Utilizar un Iterator para recorrer la lista de eventos
+    Iterator<Clase_Evento> iterator = listaEventos.iterator();
+    while (iterator.hasNext()) {
+        Clase_Evento evento = iterator.next();
+
+        // Agregar el evento a la tabla
+        Object[] rowData = {
+            evento.getIdEvento(),
+            evento.getAnioEvento(),
+            evento.getMesEvento(),
+            evento.getDiaEvento(),
+            evento.getHoraEvento(),
+            evento.getDeporte(),
+            evento.getNombreCompetencia(),
+            evento.getPaisCompetencia(),
+            evento.getEquipoA(),
+            evento.getEquipoB()
+        };
+        tableModel.addRow(rowData);
+    }
+}
+
+    
     private void btn_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SalirActionPerformed
         Clase_02_MostrarEventos.ocultar();
         Clase_00_MenuPrincipal.mostrar();
@@ -110,5 +186,7 @@ public class GUI_02_MostrarEventos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Salir;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable table_Eventos;
     // End of variables declaration//GEN-END:variables
 }

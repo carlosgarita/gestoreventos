@@ -13,6 +13,7 @@ public class Clase_02_MostrarEventos {
         
     public static void mostrar() {
         ventanaMostrarEventos.setVisible(true);
+        ventanaMostrarEventos.mostrarEventosEnTabla();
     }
 
     public static void ocultar() {
