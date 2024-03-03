@@ -12,6 +12,7 @@ public class Clase_05_OrdenarEventos {
     public static GUI_05_OrdenarEventos ventanaOrdenarEventos = new GUI_05_OrdenarEventos();
         
     public static void mostrar() {
+        ventanaOrdenarEventos.limpiarTabla();
         ventanaOrdenarEventos.setVisible(true);
     }
 
