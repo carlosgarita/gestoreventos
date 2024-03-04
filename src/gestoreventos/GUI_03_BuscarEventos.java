@@ -400,6 +400,7 @@ private void mostrarEventosEnTabla(List<Clase_Evento> eventos) {
                 break; // No es necesario continuar buscando una vez que se encuentra el evento
             }
         }
+        
         /*
         Clase_Evento evento = new Clase_Evento();
         //evento.setIdEvento(idEvento);
@@ -417,6 +418,24 @@ private void mostrarEventosEnTabla(List<Clase_Evento> eventos) {
         // de eventos o pasársela a otro método para su procesamiento adicional
 
         //Clase_01_RegistrarEventos.guardarEvento(evento);
+        
+        DefaultTableModel model = (DefaultTableModel) table_Eventos.getModel();
+        model.setRowCount(0); // Esto limpia la tabla
+
+        
+        combobox_Anio.setSelectedIndex(-1);
+        combobox_Mes.setSelectedIndex(-1);
+                
+        label_EventoID.setText("");
+        text_EventoAnio.setText("");
+        combobox_EventoMes.setSelectedIndex(-1);
+        combobox_EventoDia.setSelectedIndex(-1);
+        combobox_EventoHora.setSelectedIndex(-1);
+        combobox_EventoDeporte.setSelectedIndex(-1);
+        txt_NombreCompeticion.setText("");
+        txt_EventoPais.setText("");
+        txt_EventoEquipoA.setText("");
+        txt_EventoEquipoB.setText("");
     }//GEN-LAST:event_btn_GuardarActionPerformed
 
     private void btn_MostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MostrarActionPerformed

@@ -4,6 +4,7 @@
  */
 package gestoreventos;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -19,7 +20,33 @@ public class GUI_01_RegistrarEventos extends javax.swing.JFrame {
      */
     public GUI_01_RegistrarEventos() {
         initComponents();
+        combobox_EventoMes.setSelectedIndex(-1); // Establecer el índice seleccionado como -1 para que no haya nada seleccionado
+        combobox_EventoDia.setSelectedIndex(-1);
+        combobox_EventoHora.setSelectedIndex(-1);
+        combobox_EventoDeporte.setSelectedIndex(-1);
+        
+        idConsecutivo = generarIDConsecutivo();
+        label_EventoID.setText(idConsecutivo);
+        
     }
+    
+    private static int contadorID = 0; // Iniciar el contador en cero
+    
+    // Método para generar un ID consecutivo de 4 dígitos
+    public static String generarIDConsecutivo() {
+        String id = String.format("%04d", contadorID); // Formatear el ID como un número de 4 dígitos con ceros a la izquierda
+        contadorID++; // Incrementar el contador
+        return id;
+    }
+    
+    // Método para reiniciar el contador de IDs
+    public static void reiniciarContador() {
+        contadorID = 0; // Reiniciar el contador a cero
+    }
+    
+    String idConsecutivo = generarIDConsecutivo();
+    
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -235,6 +262,21 @@ public class GUI_01_RegistrarEventos extends javax.swing.JFrame {
         // de eventos o pasársela a otro método para su procesamiento adicional
         
         Clase_01_RegistrarEventos.guardarEvento(evento);
+        
+        combobox_EventoMes.setSelectedIndex(-1); // Establecer el índice seleccionado como -1 para que no haya nada seleccionado
+        combobox_EventoDia.setSelectedIndex(-1);
+        combobox_EventoHora.setSelectedIndex(-1);
+        combobox_EventoDeporte.setSelectedIndex(-1);
+        
+        label_EventoID.setText("");
+        text_EventoAnio.setText("");
+        txt_NombreCompeticion.setText("");
+        txt_EventoPais.setText("");
+        txt_EventoEquipoA.setText("");
+        text_EventoEquipoB.setText("");
+        
+        idConsecutivo = generarIDConsecutivo();
+        label_EventoID.setText(idConsecutivo);
     }//GEN-LAST:event_btn_GuardarActionPerformed
 
     /**
