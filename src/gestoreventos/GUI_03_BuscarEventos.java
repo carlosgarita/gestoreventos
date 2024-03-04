@@ -32,6 +32,20 @@ public class GUI_03_BuscarEventos extends javax.swing.JFrame {
     
     public GUI_03_BuscarEventos() {
         initComponents();
+        
+        combobox_Anio.setSelectedIndex(-1);
+        combobox_Mes.setSelectedIndex(-1);
+                
+        label_EventoID.setText("");
+        text_EventoAnio.setText("");
+        combobox_EventoMes.setSelectedIndex(-1);
+        combobox_EventoDia.setSelectedIndex(-1);
+        combobox_EventoHora.setSelectedIndex(-1);
+        combobox_EventoDeporte.setSelectedIndex(-1);
+        txt_NombreCompeticion.setText("");
+        txt_EventoPais.setText("");
+        txt_EventoEquipoA.setText("");
+        txt_EventoEquipoB.setText("");
     }
 
 private void mostrarEventosEnTabla(List<Clase_Evento> eventos) {
@@ -184,7 +198,7 @@ private void mostrarEventosEnTabla(List<Clase_Evento> eventos) {
 
         jLabel13.setText("Año:");
 
-        combobox_Anio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2024", "2025", "2026", "2027" }));
+        combobox_Anio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035", "2036", "2037", "2038", "2039", "2040" }));
 
         table_Eventos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
